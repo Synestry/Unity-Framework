@@ -39,7 +39,7 @@ namespace Assets.Scripts.Framework.Utils
 			TimePassed = 0;
 			Completed = false;
 
-			EventDispatcher = new EventDispatcher(GameManager.Instance.EventDispatcher);
+			EventDispatcher = new EventDispatcher(AbstractGameManager.Instance.EventDispatcher);
 			EventDispatcher.AddHandler<GameUpdateEvent>(StateEventType.GameUpdate, OnGameUpdate);
 		}
 

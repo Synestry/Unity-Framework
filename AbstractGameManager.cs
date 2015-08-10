@@ -10,9 +10,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.Framework
 {
-	public abstract class GameManager : MonoBehaviour
+	public abstract class AbstractGameManager : MonoBehaviour
 	{
-		public static GameManager Instance { get; private set; }
+		public static AbstractGameManager Instance { get; private set; }
 
 		public ResourceManager Resources { get; protected set; }
 
@@ -28,6 +28,7 @@ namespace Assets.Scripts.Framework
 			EventDispatcher = new EventDispatcher();
 			Components = new List<AbstractGameComponent>();
 			Persistence = new PersistenceManager();
+            Resources = new ResourceManager();
 		}
 
 		private void Update()

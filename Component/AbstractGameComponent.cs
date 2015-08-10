@@ -5,7 +5,7 @@ namespace Assets.Scripts.Framework.Component
 {
 	public abstract class AbstractGameComponent : IEventDispatcher
 	{
-		public GameManager Manager { get { return GameManager.Instance; } }
+		public AbstractGameManager Manager { get { return AbstractGameManager.Instance; } }
 
 		public bool GamePaused { get { return Manager.Get<StateComponent>().GamePaused; } }
 

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using Assets.Scripts.Framework.Event;
 using Assets.Scripts.Framework.IO.Resource.Models;
 using Assets.Scripts.Framework.IO.Resource.Models.Assets;
-
-using Newtonsoft.Json;
 
 using UnityEngine;
 using UnityEngine.Events;
@@ -19,14 +16,14 @@ namespace Assets.Scripts.Framework.IO.Resource
 
 		protected GameObject AssetPool { get; set; }
 
-		protected ResourceManager()
+		public ResourceManager()
 		{
 			Descriptors = new List<IResourceDescriptor>();
 
 			AssetPool = new GameObject("Asset Pool");
 			AssetPool.SetActive(false);
 
-			EventDispatcher = new EventDispatcher(GameManager.Instance.EventDispatcher);
+			EventDispatcher = new EventDispatcher(AbstractGameManager.Instance.EventDispatcher);
 		}
 
 		public EventDispatcher EventDispatcher { get; private set; }
@@ -49,18 +46,6 @@ namespace Assets.Scripts.Framework.IO.Resource
 				loader.OnLoadComplete += progress => callback();
 			}
 			loader.Load(assets, AssetPool, basePath);
-		}
-
-		protected T LoadDescriptor<T>(string descriptorPath) where T : IResourceDescriptor
-		{
-			var asset = Resources.Load<TextAsset>(descriptorPath);
-
-			if (asset == null)
-			{
-				throw new Exception(string.Format("Could not find descriptor file: {0}", descriptorPath));
-			}
-
-			return JsonConvert.DeserializeObject<T>(asset.text);
 		}
 	}
 }
