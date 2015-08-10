@@ -1,0 +1,31 @@
+##################
+# Unity ignores:
+#
+# !!! WARNING !!!
+#
+# … you MUST convert Unity to using Metafiles *before* you start using this
+#  .gitignore file, or you WILL lose data!
+#
+ 
+# OS X only:
+.DS_Store
+*.swp
+*.Trashes
+ 
+# All platforms:
+Library
+Temp
+build
+Builds
+Assets/Resources/Levels/Input/Test/*
+*.csproj
+*.pidb
+*.unityproj
+*.sln
+*.userprefs
+/*.suo
+/obj
+/Assets/UnityVS
+/Assets/UnityVS.meta
+/Annotations.cs
+/LocalCache
