@@ -23,6 +23,11 @@ namespace Assets.Scripts.Framework.Entity
 			GameObject = (GameObject)Object.Instantiate(resource);
 		}
 
+        protected void Initialise(string name)
+        {
+            GameObject = new GameObject(name);
+        }
+
 		public virtual void Update(float dt) {}
 	}
 }
