@@ -6,6 +6,8 @@ namespace Assets.Scripts.Framework.Entity
 	{
 		public GameObject GameObject { get; private set; }
 
+		public bool IsInitialised { get { return GameObject != null; } }
+
 		public virtual void Destroy()
 		{
 			Object.Destroy(GameObject);
@@ -23,10 +25,10 @@ namespace Assets.Scripts.Framework.Entity
 			GameObject = (GameObject)Object.Instantiate(resource);
 		}
 
-        protected void Initialise(string name)
-        {
-            GameObject = new GameObject(name);
-        }
+		protected void Initialise(string name)
+		{
+			GameObject = new GameObject(name);
+		}
 
 		public virtual void Update(float dt) {}
 	}
