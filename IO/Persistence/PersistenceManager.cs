@@ -25,6 +25,8 @@ namespace Assets.Scripts.Framework.IO.Persistence
 			PersistableObjects = new List<PersistableObject>();
 
 			PersistenceMigrations = new List<AbstractMigration>();
+
+            AddPersistable(new SettingsData());
 		}
 
 		/// <summary>

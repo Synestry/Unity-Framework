@@ -29,27 +29,16 @@ namespace Assets.Scripts.Framework.Component.Sound
 
 		private GameObject SoundStage { get; set; }
 
-		private AudioListener AudioListener { get; set; }
-
 		private SettingsData SettingsData { get { return Manager.Persistence.GetPersitable<SettingsData>(); } }
 
 		public SoundComponent()
 		{
 			Sounds = new Dictionary<string, SoundEntity>();
 
-			SoundStage = new GameObject("Sound Stage");
-			AudioListener = SoundStage.AddComponent<AudioListener>();
-
 			if (IsMuted)
 			{
 				Mute();
 			}
-
-			//Add event listeners to ensure one audio listener is
-			//kept in the scene when the player is not spawned
-			EventDispatcher.AddHandler(StateEventType.GameStarted, OnGameStarted);
-			EventDispatcher.AddHandler(StateEventType.GameEnded, OnGameEnded);
-			EventDispatcher.AddHandler(StateEventType.GameRestarted, OnGameEnded);
 		}
 
 		public override void Update(float dt)
@@ -60,7 +49,7 @@ namespace Assets.Scripts.Framework.Component.Sound
 
 		public void Mute()
 		{
-			AudioListener.volume = 0;
+            AudioListener.volume = 0;
 			IsMuted = true;
 		}
 
@@ -144,16 +133,6 @@ namespace Assets.Scripts.Framework.Component.Sound
 		public bool IsPlaying(string soundId)
 		{
 			return GetSound(soundId).IsPlaying();
-		}
-
-		private void OnGameStarted(GameEvent gameevent)
-		{
-			Object.Destroy(AudioListener);
-		}
-
-		private void OnGameEnded(GameEvent gameevent)
-		{
-			AudioListener = SoundStage.AddComponent<AudioListener>();
 		}
 
 		private SoundEntity GetSound(string soundId)
