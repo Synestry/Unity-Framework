@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Framework.Utils.Extensions
@@ -11,7 +11,23 @@ namespace Assets.Scripts.Framework.Utils.Extensions
 			return GameObject.Find(value.ToString());
 		}
 
-		public static bool HasTag(this GameObject gameObject, Enum tag)
+        public static List<GameObject> FindGameObjectsWithTag(this GameObject parent, Enum value)
+        {
+            var objects = new List<GameObject>();
+
+            foreach (Transform transform in parent.GetComponentsInChildren<Transform>())
+            {
+
+                if (transform.gameObject.HasTag(value))
+                {
+                    objects.Add(transform.gameObject);
+                }
+            }
+
+            return objects;
+        }
+
+        public static bool HasTag(this GameObject gameObject, Enum tag)
 		{
 			return gameObject.CompareTag(tag.ToString());
 		}
