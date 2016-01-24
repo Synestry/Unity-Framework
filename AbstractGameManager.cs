@@ -2,6 +2,9 @@
 using System.Linq;
 
 using Assets.Scripts.Framework.Component;
+using Assets.Scripts.Framework.Component.Input;
+using Assets.Scripts.Framework.Component.Sound;
+using Assets.Scripts.Framework.Component.State;
 using Assets.Scripts.Framework.Event;
 using Assets.Scripts.Framework.IO.Persistence;
 using Assets.Scripts.Framework.IO.Resource;
@@ -29,6 +32,10 @@ namespace Assets.Scripts.Framework
 			Components = new List<AbstractGameComponent>();
 			Persistence = new PersistenceManager();
             Resources = new ResourceManager();
+
+            Components.Add(new StateComponent());
+            Components.Add(new InputComponent());
+            Components.Add(new SoundComponent());
 		}
 
 		private void Update()
